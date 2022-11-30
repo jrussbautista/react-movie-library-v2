@@ -1,11 +1,12 @@
-import { Button } from '@chakra-ui/react';
+import Home from '@/pages/Home/Home';
+import MainLayout from '@/layouts/MainLayout/MainLayout';
 
 function App() {
   return (
     <div>
-      <Button colorScheme="teal" size="lg">
-        hello world
-      </Button>
+      <MainLayout>
+        <Home />
+      </MainLayout>
     </div>
   );
 }
