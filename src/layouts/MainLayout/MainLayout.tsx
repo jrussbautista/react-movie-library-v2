@@ -1,4 +1,4 @@
-import React from 'react';
+import { Container } from '@chakra-ui/react';
 import Header from './Header';
 
 type MainLayoutProps = {
@@ -7,10 +7,12 @@ type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div>
+    <>
       <Header />
-      {children}
-    </div>
+      <Container as="main" maxW="6xl">
+        {children}
+      </Container>
+    </>
   );
 };
 

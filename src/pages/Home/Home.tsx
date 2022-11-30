@@ -1,7 +1,11 @@
-import React from 'react';
+import DiscoverMovies from './components/DiscoverMovies';
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <DiscoverMovies />
+    </>
+  );
 };
 
 export default Home;
