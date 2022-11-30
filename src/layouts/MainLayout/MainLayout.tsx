@@ -1,5 +1,5 @@
 import { Container } from '@chakra-ui/react';
-import Header from './Header';
+import Navigation from './Navigation';
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -8,8 +8,8 @@ type MainLayoutProps = {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
-      <Header />
-      <Container as="main" maxW="6xl">
+      <Navigation />
+      <Container as="main" maxW="6xl" paddingTop="10" paddingBottom="10">
         {children}
       </Container>
     </>

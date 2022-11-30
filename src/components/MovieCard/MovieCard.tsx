@@ -12,7 +12,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <Card>
       <CardBody>
-        <Stack position="relative" paddingTop="150%">
+        <Stack position="relative" paddingTop="130%">
           <Image
             src={imgSrc}
             alt={movie.title}

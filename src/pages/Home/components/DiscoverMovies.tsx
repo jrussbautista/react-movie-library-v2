@@ -1,17 +1,15 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import MovieCard from '@/components/MovieCard/MovieCard';
 import { useMovies } from '@/services/moviesService';
 
 const DiscoverMovies = () => {
   const { data } = useMovies();
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap={6} marginBottom="2">
+    <SimpleGrid minChildWidth="240px" spacing="20px">
       {data?.results?.map((movie) => (
-        <GridItem key={movie.id}>
-          <MovieCard movie={movie} />
-        </GridItem>
+        <MovieCard key={movie.id} movie={movie} />
       ))}
-    </Grid>
+    </SimpleGrid>
   );
 };
 
