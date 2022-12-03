@@ -1,16 +1,13 @@
+import { Outlet } from 'react-router-dom';
 import { Container } from '@chakra-ui/react';
 import Navigation from './Navigation';
 
-type MainLayoutProps = {
-  children: React.ReactNode;
-};
-
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = () => {
   return (
     <>
       <Navigation />
       <Container as="main" maxW="6xl" paddingTop="10" paddingBottom="10">
-        {children}
+        <Outlet />
       </Container>
     </>
   );
