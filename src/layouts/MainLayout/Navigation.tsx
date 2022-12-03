@@ -8,11 +8,14 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Heading,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
+import { Link } from 'react-router-dom';
+import { routes } from '@/routes';
 
 const Navigation = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -45,13 +48,17 @@ const Navigation = () => {
           />
         </Flex>
         <Flex justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}
-          >
-            Movie Library
-          </Text>
+          <Link to={routes.home}>
+            <Heading
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+              color={useColorModeValue('red.500', 'white')}
+              fontWeight="700"
+              size="md"
+            >
+              Movie Library
+            </Heading>
+          </Link>
         </Flex>
 
         <Stack flex={{ base: 1 }} justify={'flex-end'} direction={'row'}>

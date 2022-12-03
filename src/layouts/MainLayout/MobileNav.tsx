@@ -2,13 +2,12 @@ import { NAV_ITEMS } from '@/constants';
 import { NavItem } from '@/types';
 import {
   Flex,
-  Link,
   Stack,
   useColorModeValue,
   useDisclosure,
   Text,
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const MobileNavItem = ({ label, href }: NavItem) => {
   const { onToggle } = useDisclosure();
@@ -24,14 +23,18 @@ const MobileNavItem = ({ label, href }: NavItem) => {
           textDecoration: 'none',
         }}
       >
-        <RouterLink to={href ?? '#'}>
-          <Text
-            fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}
-          >
-            {label}
-          </Text>
-        </RouterLink>
+        <NavLink to={href ?? '#'}>
+          {({ isActive }) => (
+            <Text
+              fontWeight={isActive ? 600 : 400}
+              color={
+                isActive ? 'red.500' : useColorModeValue('gray.600', 'gray.200')
+              }
+            >
+              {label}
+            </Text>
+          )}
+        </NavLink>
       </Flex>
     </Stack>
   );
