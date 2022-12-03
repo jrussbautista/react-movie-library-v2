@@ -1,3 +1,13 @@
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type Country = {
+  id: number;
+  name: string;
+};
+
 export type Movie = {
   id: number;
   original_language: string;
@@ -10,6 +20,9 @@ export type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  genres: Genre[];
+  countries: Country[];
+  runtime: string;
 };
 
 export type NavItem = {

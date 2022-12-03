@@ -2,6 +2,7 @@ import { NavItem } from '@/types';
 
 export const queryKeys = {
   MOVIES: 'movies',
+  MOVIE: 'movie',
 };
 
 export const MOVIE_SRC_BASE_PATH = 'https://image.tmdb.org/t/p/w342/';

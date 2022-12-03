@@ -3,10 +3,11 @@ import Home from '@/pages/Home/Home';
 import MovieDetailPage from '@/pages/MovieDetail/MovieDetailPage';
 import ErrorPage from '@/pages/ErrorPage';
 import MainLayout from '@/layouts/MainLayout/MainLayout';
+import { routes } from '@/routes';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: routes.home,
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/movie/:id',
+        path: `/${routes.movieDetails}/:id`,
         element: <MovieDetailPage />,
         errorElement: <ErrorPage />,
       },
