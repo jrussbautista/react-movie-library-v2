@@ -1,6 +1,6 @@
 import DiscoverMovies from './components/DiscoverMovies';
 
-const Home = () => {
+const DiscoverPage = () => {
   return (
     <>
       <DiscoverMovies />
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default DiscoverPage;

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getMovies, getMovie } from '@/api/moviesApi';
-import { queryKeys } from '@/constants';
+import { getDiscoverMovies, getMovie } from '@/api/moviesApi';
+import { discoverNames, queryKeys } from '@/constants';
 
-export const useMovies = () => {
+export const useDiscoverMovies = (name: string = discoverNames.POPULAR) => {
   return useQuery({
-    queryKey: [queryKeys.MOVIES],
-    queryFn: () => getMovies(),
+    queryKey: [queryKeys.DISCOVER_MOVIES, name],
+    queryFn: () => getDiscoverMovies(name),
   });
 };
 

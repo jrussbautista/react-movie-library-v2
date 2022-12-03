@@ -8,6 +8,7 @@ import {
   useDisclosure,
   Text,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const MobileNavItem = ({ label, href }: NavItem) => {
   const { onToggle } = useDisclosure();
@@ -16,20 +17,21 @@ const MobileNavItem = ({ label, href }: NavItem) => {
     <Stack spacing={4} onClick={onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as={'div'}
         justify={'space-between'}
         align={'center'}
         _hover={{
           textDecoration: 'none',
         }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
-        >
-          {label}
-        </Text>
+        <RouterLink to={href ?? '#'}>
+          <Text
+            fontWeight={600}
+            color={useColorModeValue('gray.600', 'gray.200')}
+          >
+            {label}
+          </Text>
+        </RouterLink>
       </Flex>
     </Stack>
   );

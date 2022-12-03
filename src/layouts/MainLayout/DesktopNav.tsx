@@ -1,5 +1,6 @@
+import { Link as RouterLink } from 'react-router-dom';
 import { NAV_ITEMS } from '@/constants';
-import { Box, Stack, Link, useColorModeValue } from '@chakra-ui/react';
+import { Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
@@ -9,19 +10,20 @@ const DesktopNav = () => {
     <Stack direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Link
-            p={2}
-            href={navItem.href ?? '#'}
-            fontSize={'sm'}
-            fontWeight={500}
-            color={linkColor}
-            _hover={{
-              textDecoration: 'none',
-              color: linkHoverColor,
-            }}
-          >
-            {navItem.label}
-          </Link>
+          <RouterLink to={navItem?.href ?? '#'}>
+            <Text
+              p={2}
+              fontSize={'sm'}
+              fontWeight={500}
+              color={linkColor}
+              _hover={{
+                textDecoration: 'none',
+                color: linkHoverColor,
+              }}
+            >
+              {navItem.label}
+            </Text>
+          </RouterLink>
         </Box>
       ))}
     </Stack>

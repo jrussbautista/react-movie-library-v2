@@ -1,3 +1,4 @@
+import { discoverNames } from '@/constants';
 import apiClient from '@/lib/apiClient';
 import { Movie } from '@/types';
 
@@ -7,8 +8,10 @@ type Response<T> = {
   total_results: number;
 };
 
-export const getMovies = async (): Promise<Response<Movie>> => {
-  const { data } = await apiClient.get('/discover/movie');
+export const getDiscoverMovies = async (
+  name: string = discoverNames.POPULAR
+): Promise<Response<Movie>> => {
+  const { data } = await apiClient.get(`/movie/${name}`);
   return data;
 };
 

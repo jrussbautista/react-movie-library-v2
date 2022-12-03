@@ -1,6 +1,10 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from '@/pages/Home/Home';
-import MovieDetailPage from '@/pages/MovieDetail/MovieDetailPage';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
+import DiscoverPage from './pages/DiscoverPage/DiscoverPage';
+import MovieDetailPage from '@/pages/MovieDetailPage/MovieDetailPage';
 import ErrorPage from '@/pages/ErrorPage';
 import MainLayout from '@/layouts/MainLayout/MainLayout';
 import { routes } from '@/routes';
@@ -8,15 +12,18 @@ import { routes } from '@/routes';
 const router = createBrowserRouter([
   {
     path: routes.home,
-    element: <MainLayout />,
+    element: <Navigate to={`${routes.discover}/popular`} />,
     errorElement: <ErrorPage />,
+  },
+  {
+    element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: `${routes.discover}/:name`,
+        element: <DiscoverPage />,
       },
       {
-        path: `/${routes.movieDetails}/:id`,
+        path: `${routes.movieDetails}/:id`,
         element: <MovieDetailPage />,
         errorElement: <ErrorPage />,
       },

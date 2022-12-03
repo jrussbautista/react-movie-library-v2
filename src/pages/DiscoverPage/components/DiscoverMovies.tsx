@@ -1,10 +1,16 @@
+import { useParams } from 'react-router-dom';
+
 import { SimpleGrid, Skeleton, Stack } from '@chakra-ui/react';
 import MovieCard from '@/components/MovieCard/MovieCard';
-import { useMovies } from '@/services/moviesService';
+import { useDiscoverMovies } from '@/services/moviesService';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+import { discoverNames } from '@/constants';
 
 const DiscoverMovies = () => {
-  const { data, isLoading, isError } = useMovies();
+  const { name } = useParams<{ name: string }>();
+  const { data, isLoading, isError } = useDiscoverMovies(
+    name || discoverNames.POPULAR
+  );
 
   const skeletonLines = [...Array(20).keys()];
 
