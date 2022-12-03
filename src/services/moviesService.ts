@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getDiscoverMovies, getMovie } from '@/api/moviesApi';
+import {
+  getDiscoverMovies,
+  getMovie,
+  getRecommendedMovies,
+} from '@/api/moviesApi';
 import { discoverNames, queryKeys } from '@/constants';
 
 export const useDiscoverMovies = (name: string = discoverNames.POPULAR) => {
@@ -14,5 +18,12 @@ export const useMovie = (id: string) => {
   return useQuery({
     queryKey: [queryKeys.MOVIE, id],
     queryFn: () => getMovie(id),
+  });
+};
+
+export const useRecommendedMovies = (id: string) => {
+  return useQuery({
+    queryKey: [queryKeys.RECOMMENDED_MOVIES, id],
+    queryFn: () => getRecommendedMovies(id),
   });
 };

@@ -10,6 +10,7 @@ export const queryKeys = {
   DISCOVER_MOVIES: 'discover_movies',
   MOVIES: 'movies',
   MOVIE: 'movie',
+  RECOMMENDED_MOVIES: 'recommended_movies',
 };
 
 export const MOVIE_SRC_BASE_PATH = 'https://image.tmdb.org/t/p/w342/';

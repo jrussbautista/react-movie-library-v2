@@ -1,9 +1,19 @@
-import { Flex, Heading, Image, Skeleton, Stack, Text } from '@chakra-ui/react';
+import {
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Skeleton,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 
 import { useMovie } from '@/services/moviesService';
 import { MOVIE_SRC_BASE_PATH } from '@/constants';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
+
+import RecommendedMovies from './components/RecommendedMovies';
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,6 +51,7 @@ const MovieDetailPage = () => {
         <Stack flex={1} ml={{ base: 0, md: 10 }}>
           <Heading>{movie.title}</Heading>
           <Text>{movie.overview}</Text>
+          <Divider />
           {/* Genres */}
           <Flex>
             <Stack width={160}>
@@ -89,6 +100,14 @@ const MovieDetailPage = () => {
           )}
         </Stack>
       </Flex>
+      <Stack mt={10} />
+      <Divider />
+      <Stack>
+        <Heading as="h2" size="lg" mt={4} mb={2}>
+          Recommended Movies
+        </Heading>
+        <RecommendedMovies movieId={id as string} />
+      </Stack>
     </>
   );
 };

@@ -19,3 +19,10 @@ export const getMovie = async (id: string): Promise<Movie> => {
   const { data } = await apiClient.get(`/movie/${id}`);
   return data;
 };
+
+export const getRecommendedMovies = async (
+  id: string
+): Promise<Response<Movie>> => {
+  const { data } = await apiClient.get(`/movie/${id}/recommendations`);
+  return data;
+};
