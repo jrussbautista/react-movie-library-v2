@@ -15,6 +15,8 @@ import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 import RecommendedMovies from './components/RecommendedMovies';
 import Meta from '@/components/Meta/Meta';
+import Rating from '@/components/Rating/Rating';
+import movieUtils from '@/utils/movieUtils';
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,6 +41,7 @@ const MovieDetailPage = () => {
   }
 
   const imgSrc = `${MOVIE_SRC_BASE_PATH}/${movie.poster_path}`;
+  const rating = movieUtils.calculateMovieRating(movie.vote_average);
 
   return (
     <>
@@ -52,6 +55,7 @@ const MovieDetailPage = () => {
         />
         <Stack flex={1} ml={{ base: 0, md: 10 }}>
           <Heading>{movie.title}</Heading>
+          <Rating value={rating} />
           <Text>{movie.overview}</Text>
           <Divider />
           {/* Genres */}
