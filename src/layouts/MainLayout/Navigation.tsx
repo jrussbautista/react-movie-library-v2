@@ -62,7 +62,7 @@ const Navigation = () => {
         </Flex>
 
         <Stack flex={{ base: 1 }} justify={'flex-end'} direction={'row'}>
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+          <Flex display={{ base: 'none', md: 'flex' }}>
             <DesktopNav />
           </Flex>
         </Stack>

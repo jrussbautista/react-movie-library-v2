@@ -26,3 +26,10 @@ export const getRecommendedMovies = async (
   const { data } = await apiClient.get(`/movie/${id}/recommendations`);
   return data;
 };
+
+export const searchMovies = async (
+  queryText: string
+): Promise<Response<Movie>> => {
+  const { data } = await apiClient.get(`search/movie?query=${queryText}`);
+  return data;
+};

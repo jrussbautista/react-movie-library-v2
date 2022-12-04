@@ -11,6 +11,11 @@ export const queryKeys = {
   MOVIES: 'movies',
   MOVIE: 'movie',
   RECOMMENDED_MOVIES: 'recommended_movies',
+  SEARCH_MOVIES: 'search_movies',
+};
+
+export const searchParamsKeys = {
+  QUERY_TEXT: 'queryText',
 };
 
 export const MOVIE_SRC_BASE_PATH = 'https://image.tmdb.org/t/p/w342/';
