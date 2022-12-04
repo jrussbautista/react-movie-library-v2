@@ -7,7 +7,7 @@ type MovieListSkeletonProps = {
 const MovieListSkeleton = ({ count = 20 }: MovieListSkeletonProps) => {
   const skeletonLines = [...Array(count).keys()];
   return (
-    <SimpleGrid minChildWidth="240px" spacing="20px">
+    <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
       {skeletonLines.map((line) => (
         <Stack key={line} sx={{ position: 'relative', paddingTop: '150%' }}>
           <Skeleton
