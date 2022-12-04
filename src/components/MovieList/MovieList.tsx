@@ -8,7 +8,7 @@ type MovieListProps = {
 
 const MovieList = ({ movies }: MovieListProps) => {
   return (
-    <SimpleGrid minChildWidth="240px" spacing="20px">
+    <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
