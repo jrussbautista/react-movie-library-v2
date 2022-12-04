@@ -12,6 +12,7 @@ export const queryKeys = {
   MOVIE: 'movie',
   RECOMMENDED_MOVIES: 'recommended_movies',
   SEARCH_MOVIES: 'search_movies',
+  GENRES: 'genres',
 };
 
 export const searchParamsKeys = {

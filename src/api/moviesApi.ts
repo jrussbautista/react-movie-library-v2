@@ -9,9 +9,10 @@ type Response<T> = {
 };
 
 export const getDiscoverMovies = async (
-  name: string = discoverNames.POPULAR
+  name: string = discoverNames.POPULAR,
+  params?: Record<string, any>
 ): Promise<Response<Movie>> => {
-  const { data } = await apiClient.get(`/movie/${name}`);
+  const { data } = await apiClient.get(`/movie/${name}`, { params });
   return data;
 };
 

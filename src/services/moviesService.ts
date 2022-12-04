@@ -8,10 +8,17 @@ import {
 } from '@/api/moviesApi';
 import { discoverNames, queryKeys } from '@/constants';
 
-export const useDiscoverMovies = (name: string = discoverNames.POPULAR) => {
+export const useDiscoverMovies = (
+  name: string = discoverNames.POPULAR,
+  genreId?: number
+) => {
+  const params: Record<string, any> = {};
+  if (genreId) {
+    params.with_genres = genreId;
+  }
   return useQuery({
-    queryKey: [queryKeys.DISCOVER_MOVIES, name],
-    queryFn: () => getDiscoverMovies(name),
+    queryKey: [queryKeys.DISCOVER_MOVIES, name, genreId],
+    queryFn: () => getDiscoverMovies(name, params),
   });
 };
 
