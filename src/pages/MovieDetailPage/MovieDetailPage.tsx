@@ -14,6 +14,7 @@ import { MOVIE_SRC_BASE_PATH } from '@/constants';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 
 import RecommendedMovies from './components/RecommendedMovies';
+import Meta from '@/components/Meta/Meta';
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,6 +42,7 @@ const MovieDetailPage = () => {
 
   return (
     <>
+      <Meta title={movie.title} />
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <Image
           src={imgSrc}

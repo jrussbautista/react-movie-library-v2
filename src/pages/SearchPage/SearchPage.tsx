@@ -6,6 +6,7 @@ import MovieList from '@/components/MovieList/MovieList';
 import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
 import EmptyList from '@/components/EmptyList/EmptyList';
 import { searchParamsKeys } from '@/constants';
+import Meta from '@/components/Meta/Meta';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -22,12 +23,18 @@ const SearchPage = () => {
 
   const movies = data.results;
   const emptyDescription = `No results found for ${queryText}. Please try another keyword`;
+  const metaTitle = `Search Movies - ${queryText}`;
 
   if (!movies.length) {
     return <EmptyList description={emptyDescription} />;
   }
 
-  return <MovieList movies={data.results} />;
+  return (
+    <>
+      <Meta title={metaTitle} />
+      <MovieList movies={data.results} />
+    </>
+  );
 };
 
 export default SearchPage;
