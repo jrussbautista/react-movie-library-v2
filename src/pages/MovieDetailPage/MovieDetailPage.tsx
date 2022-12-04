@@ -102,12 +102,7 @@ const MovieDetailPage = () => {
       </Flex>
       <Stack mt={10} />
       <Divider />
-      <Stack>
-        <Heading as="h2" size="lg" mt={4} mb={2}>
-          Recommended Movies
-        </Heading>
-        <RecommendedMovies movieId={id as string} />
-      </Stack>
+      <RecommendedMovies movieId={id as string} />
     </>
   );
 };
