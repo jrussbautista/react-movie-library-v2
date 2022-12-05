@@ -1,19 +1,28 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useSearchMovies } from '@/services/moviesService';
+import { useInfiniteSearchMovies } from '@/services/moviesService';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import MovieList from '@/components/MovieList/MovieList';
 import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
 import EmptyList from '@/components/EmptyList/EmptyList';
 import { searchParamsKeys } from '@/constants';
 import Meta from '@/components/Meta/Meta';
+import { Button, Flex } from '@chakra-ui/react';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const queryText = searchParams.get(searchParamsKeys.QUERY_TEXT) || '';
-  const { data, isLoading, isError } = useSearchMovies(queryText);
+  const {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteSearchMovies(queryText);
 
-  if (isLoading) {
+  if (isLoading || (isFetching && !isFetchingNextPage)) {
     return <MovieListSkeleton />;
   }
 
@@ -21,18 +30,37 @@ const SearchPage = () => {
     return <ErrorBanner />;
   }
 
-  const movies = data.results;
+  const handleLoadMore = () => {
+    fetchNextPage();
+  };
+
+  const { pages } = data;
+
   const emptyDescription = `No results found for ${queryText}. Please try another keyword`;
   const metaTitle = `Search Movies - ${queryText}`;
 
-  if (!movies.length) {
+  if (!pages.length) {
     return <EmptyList description={emptyDescription} />;
   }
 
   return (
     <>
       <Meta title={metaTitle} />
-      <MovieList movies={data.results} />
+      {pages.map(({ page, results }) => (
+        <MovieList key={page} movies={results} />
+      ))}
+      <Flex mt={10} alignItems="center" justifyContent="center">
+        <Button
+          variant="solid"
+          size="lg"
+          color="red.500"
+          onClick={handleLoadMore}
+          disabled={!hasNextPage || isFetchingNextPage}
+          isLoading={isFetchingNextPage}
+        >
+          Load More
+        </Button>
+      </Flex>
     </>
   );
 };

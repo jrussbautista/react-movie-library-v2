@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { useDiscoverMovies } from '@/services/moviesService';
+import { useInfiniteDiscoverMovies } from '@/services/moviesService';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
-import { discoverNames } from '@/constants';
 import MovieList from '@/components/MovieList/MovieList';
 import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
+import { Button, Flex } from '@chakra-ui/react';
 
 type DiscoverMoviesProps = {
   selectedGenreId?: number;
@@ -12,12 +12,20 @@ type DiscoverMoviesProps = {
 
 const DiscoverMovies = ({ selectedGenreId }: DiscoverMoviesProps) => {
   const { name } = useParams<{ name: string }>();
-  const { data, isLoading, isError } = useDiscoverMovies(
-    name || discoverNames.POPULAR,
-    selectedGenreId
-  );
+  const {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteDiscoverMovies({
+    name,
+    genreId: selectedGenreId,
+  });
 
-  if (isLoading) {
+  if (isLoading || (isFetching && !isFetchingNextPage)) {
     return <MovieListSkeleton />;
   }
 
@@ -25,7 +33,31 @@ const DiscoverMovies = ({ selectedGenreId }: DiscoverMoviesProps) => {
     return <ErrorBanner />;
   }
 
-  return <MovieList movies={data.results} />;
+  const handleLoadMore = () => {
+    fetchNextPage();
+  };
+
+  const { pages } = data;
+
+  return (
+    <>
+      {pages.map(({ results: movies, page }) => (
+        <MovieList key={page} movies={movies} />
+      ))}
+      <Flex mt={10} alignItems="center" justifyContent="center">
+        <Button
+          variant="solid"
+          size="lg"
+          color="red.500"
+          onClick={handleLoadMore}
+          disabled={!hasNextPage || isFetchingNextPage}
+          isLoading={isFetchingNextPage}
+        >
+          Load More
+        </Button>
+      </Flex>
+    </>
+  );
 };
 
 export default DiscoverMovies;

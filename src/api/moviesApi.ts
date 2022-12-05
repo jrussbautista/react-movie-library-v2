@@ -6,6 +6,7 @@ type Response<T> = {
   results: T[];
   total_pages: number;
   total_results: number;
+  page?: number;
 };
 
 export const getDiscoverMovies = async (
@@ -29,8 +30,11 @@ export const getRecommendedMovies = async (
 };
 
 export const searchMovies = async (
-  queryText: string
+  queryText: string,
+  params: Record<string, any> = {}
 ): Promise<Response<Movie>> => {
-  const { data } = await apiClient.get(`search/movie?query=${queryText}`);
+  const { data } = await apiClient.get(`search/movie?query=${queryText}`, {
+    params,
+  });
   return data;
 };

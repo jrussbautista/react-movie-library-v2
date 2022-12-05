@@ -39,3 +39,5 @@ export const NAV_ITEMS: NavItem[] = [
     href: 'favorites',
   },
 ];
+
+export const QUERY_CLIENT_DEFAULT_STALE_TIME = 60 * 1000 * 10; // 10 minutes

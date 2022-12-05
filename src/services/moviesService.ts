@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import {
   getDiscoverMovies,
@@ -8,17 +8,31 @@ import {
 } from '@/api/moviesApi';
 import { discoverNames, queryKeys } from '@/constants';
 
-export const useDiscoverMovies = (
-  name: string = discoverNames.POPULAR,
-  genreId?: number
-) => {
+type DiscoverMoviesParams = {
+  name?: string;
+  genreId?: number;
+};
+
+export const useInfiniteDiscoverMovies = ({
+  name = discoverNames.POPULAR,
+  genreId = undefined,
+}: DiscoverMoviesParams) => {
   const params: Record<string, any> = {};
   if (genreId) {
     params.with_genres = genreId;
   }
-  return useQuery({
-    queryKey: [queryKeys.DISCOVER_MOVIES, name, genreId],
-    queryFn: () => getDiscoverMovies(name, params),
+  return useInfiniteQuery({
+    queryKey: [queryKeys.DISCOVER_MOVIES, genreId],
+    queryFn: ({ pageParam = 1 }) => {
+      return getDiscoverMovies(name, { ...params, page: pageParam });
+    },
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.results.length) {
+        return false;
+      }
+      const nextPage = lastPage?.page ? lastPage.page + 1 : 1;
+      return nextPage;
+    },
   });
 };
 
@@ -36,9 +50,18 @@ export const useRecommendedMovies = (id: string) => {
   });
 };
 
-export const useSearchMovies = (queryText: string) => {
-  return useQuery({
+export const useInfiniteSearchMovies = (queryText: string) => {
+  return useInfiniteQuery({
     queryKey: [queryKeys.SEARCH_MOVIES, queryText],
-    queryFn: () => searchMovies(queryText),
+    queryFn: ({ pageParam = 1 }) => {
+      return searchMovies(queryText, { page: pageParam });
+    },
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.results.length) {
+        return false;
+      }
+      const nextPage = lastPage?.page ? lastPage.page + 1 : 1;
+      return nextPage;
+    },
   });
 };
