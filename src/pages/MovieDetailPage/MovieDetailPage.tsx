@@ -23,12 +23,13 @@ import movieUtils from '@/utils/movieUtils';
 import favoriteMovieUtils from '@/utils/favoriteMoviesUtils';
 import { useStore } from '@/store';
 
-
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data: movie, isLoading, isError } = useMovie(id as string);
 
   const { favoriteMovies, addFavoriteMovie, removeFavoriteMovie } = useStore();
+
+  console.log('favoriteMovies', favoriteMovies);
 
   const skeletonLines = [...Array(10).keys()];
 

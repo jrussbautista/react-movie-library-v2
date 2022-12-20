@@ -1,4 +1,6 @@
 import create from 'zustand';
+import { persist } from 'zustand/middleware';
+
 import { Movie } from '@/types';
 
 type State = {
@@ -7,22 +9,23 @@ type State = {
   removeFavoriteMovie: (favoriteMovie: Movie) => void;
 };
 
-export const useStore = create<State>((set) => ({
-  favoriteMovies: [],
-  addFavoriteMovie: (favoriteMovie: Movie) =>
-    set((state) => {
-      const favoriteMovies = [...state.favoriteMovies, favoriteMovie];
-      return {
-        favoriteMovies,
-      };
+export const useStore = create<State>()(
+  persist(
+    (set, get) => ({
+      favoriteMovies: [],
+      addFavoriteMovie: (favoriteMovie: Movie) => {
+        const favoriteMovies = [...get().favoriteMovies, favoriteMovie];
+        return set({ favoriteMovies });
+      },
+      removeFavoriteMovie: (favoriteMovie: Movie) => {
+        const favoriteMovies = get().favoriteMovies.filter(
+          (movie) => movie.id !== favoriteMovie.id
+        );
+        return set({ favoriteMovies });
+      },
     }),
-  removeFavoriteMovie: (favoriteMovie: Movie) =>
-    set((state) => {
-      const favoriteMovies = state.favoriteMovies.filter(
-        (movie) => movie.id !== favoriteMovie.id
-      );
-      return {
-        favoriteMovies,
-      };
-    }),
-}));
+    {
+      name: 'favorite-movies',
+    }
+  )
+);
