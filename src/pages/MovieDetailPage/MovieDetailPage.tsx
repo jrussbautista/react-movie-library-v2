@@ -22,18 +22,22 @@ import Rating from '@/components/Rating/Rating';
 import movieUtils from '@/utils/movieUtils';
 import favoriteMovieUtils from '@/utils/favoriteMoviesUtils';
 import { useStore } from '@/store';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: movie, isLoading, isError } = useMovie(id as string);
+  const {
+    data: movie,
+    isLoading,
+    isFetching,
+    isError,
+  } = useMovie(id as string);
 
   const { favoriteMovies, addFavoriteMovie, removeFavoriteMovie } = useStore();
 
-  console.log('favoriteMovies', favoriteMovies);
-
   const skeletonLines = [...Array(10).keys()];
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <Stack>
         {skeletonLines.map((line) => (
@@ -67,6 +71,7 @@ const MovieDetailPage = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Meta title={movie.title} />
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
         <Image

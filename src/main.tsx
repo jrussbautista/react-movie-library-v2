@@ -7,6 +7,7 @@ import { theme } from '@/lib/chakra';
 import { queryClient } from '@/lib/reactQuery';
 
 import App from './App';
+import './styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
