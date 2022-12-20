@@ -3,4 +3,5 @@ export const routes = {
   discover: 'discover',
   movieDetails: 'movie',
   searchMovies: 'search',
+  favoriteMovies: 'favorites',
 };

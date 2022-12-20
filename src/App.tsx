@@ -6,6 +6,7 @@ import {
 import DiscoverPage from '@/pages/DiscoverPage/DiscoverPage';
 import MovieDetailPage from '@/pages/MovieDetailPage/MovieDetailPage';
 import SearchPage from '@/pages/SearchPage/SearchPage';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import ErrorPage from '@/pages/ErrorPage';
 import MainLayout from '@/layouts/MainLayout/MainLayout';
 import { routes } from '@/routes';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: routes.searchMovies,
         element: <SearchPage />,
+      },
+      {
+        path: routes.favoriteMovies,
+        element: <FavoritesPage />,
       },
     ],
   },
