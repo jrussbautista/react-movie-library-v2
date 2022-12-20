@@ -7,3 +7,4 @@
 - React Query
 - Chakra UI
 - Vite
+- Zustand for global state management
