@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
+import { Button, Flex } from '@chakra-ui/react';
 
 import { useInfiniteDiscoverMovies } from '@/services/moviesService';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import MovieList from '@/components/MovieList/MovieList';
 import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
-import { Button, Flex } from '@chakra-ui/react';
 
 type DiscoverMoviesProps = {
   selectedGenreId?: number;

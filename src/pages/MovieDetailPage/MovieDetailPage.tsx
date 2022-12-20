@@ -1,4 +1,5 @@
 import {
+  Button,
   Divider,
   Flex,
   Heading,
@@ -7,6 +8,8 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
+import { MdFavorite } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 
 import { useMovie } from '@/services/moviesService';
@@ -17,10 +20,15 @@ import RecommendedMovies from './components/RecommendedMovies';
 import Meta from '@/components/Meta/Meta';
 import Rating from '@/components/Rating/Rating';
 import movieUtils from '@/utils/movieUtils';
+import favoriteMovieUtils from '@/utils/favoriteMoviesUtils';
+import { useStore } from '@/store';
+
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data: movie, isLoading, isError } = useMovie(id as string);
+
+  const { favoriteMovies, addFavoriteMovie, removeFavoriteMovie } = useStore();
 
   const skeletonLines = [...Array(10).keys()];
 
@@ -40,6 +48,19 @@ const MovieDetailPage = () => {
     );
   }
 
+  const isFavorite = favoriteMovieUtils.checkIfMovieIsFavorite(
+    favoriteMovies,
+    movie.id
+  );
+
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      removeFavoriteMovie(movie);
+    } else {
+      addFavoriteMovie(movie);
+    }
+  };
+
   const imgSrc = `${MOVIE_SRC_BASE_PATH}/${movie.poster_path}`;
   const rating = movieUtils.calculateMovieRating(movie.vote_average);
 
@@ -54,7 +75,17 @@ const MovieDetailPage = () => {
           mb={{ base: 2, md: 0 }}
         />
         <Stack flex={1} ml={{ base: 0, md: 10 }}>
-          <Heading>{movie.title}</Heading>
+          <Flex>
+            <Heading>{movie.title}</Heading>
+            <Flex flex={1} justifyContent="flex-end">
+              <Button
+                color={isFavorite ? 'red.400' : 'gray.400'}
+                onClick={handleToggleFavorite}
+              >
+                <Icon as={MdFavorite} />
+              </Button>
+            </Flex>
+          </Flex>
           <Rating value={rating} />
           <Text>{movie.overview}</Text>
           <Divider />
