@@ -2,6 +2,7 @@ import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import { Movie } from '@/types';
+import { localStorageKeys } from '@/constants';
 
 type State = {
   favoriteMovies: Movie[];
@@ -25,7 +26,7 @@ export const useStore = create<State>()(
       },
     }),
     {
-      name: 'favorite-movies',
+      name: localStorageKeys.FAVORITE_MOVIES,
     }
   )
 );
