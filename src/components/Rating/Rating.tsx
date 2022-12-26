@@ -13,9 +13,9 @@ const Rating = ({ value = 5 }: RatingProps) => {
   const renderStar = (number: number) => {
     if (number <= value) {
       return <StarIcon color="red.500" />;
-    } else {
+    } 
       return <StarIcon />;
-    }
+    
   };
 
   return (

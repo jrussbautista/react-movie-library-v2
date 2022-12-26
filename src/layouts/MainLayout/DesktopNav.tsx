@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { NAV_ITEMS } from '@/constants';
 import { Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { NAV_ITEMS } from '@/constants';
 import SearchBar from './SearchBar';
 import { routes } from '@/routes';
 
@@ -16,7 +16,7 @@ const DesktopNav = () => {
   };
 
   return (
-    <Stack direction={'row'} alignItems="center" spacing={4}>
+    <Stack direction="row" alignItems="center" spacing={4}>
       <SearchBar onSubmitSearch={handleSubmitSearch} />
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
@@ -24,7 +24,7 @@ const DesktopNav = () => {
             {({ isActive }) => (
               <Text
                 p={2}
-                fontSize={'sm'}
+                fontSize="sm"
                 fontWeight={isActive ? 700 : 400}
                 color={isActive ? 'red.500' : linkColor}
                 _hover={{

@@ -1,5 +1,3 @@
-import { NAV_ITEMS } from '@/constants';
-import { NavItem } from '@/types';
 import {
   Flex,
   Stack,
@@ -8,6 +6,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
+import { NAV_ITEMS } from '@/constants';
+import { NavItem } from '@/types';
 
 const MobileNavItem = ({ label, href }: NavItem) => {
   const { onToggle } = useDisclosure();
@@ -16,9 +16,9 @@ const MobileNavItem = ({ label, href }: NavItem) => {
     <Stack spacing={4} onClick={onToggle}>
       <Flex
         py={2}
-        as={'div'}
-        justify={'space-between'}
-        align={'center'}
+        as="div"
+        justify="space-between"
+        align="center"
         _hover={{
           textDecoration: 'none',
         }}
@@ -48,7 +48,11 @@ const MobileNav = () => {
       display={{ md: 'none' }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem
+          key={navItem.label}
+          label={navItem.label}
+          href={navItem.href}
+        />
       ))}
     </Stack>
   );

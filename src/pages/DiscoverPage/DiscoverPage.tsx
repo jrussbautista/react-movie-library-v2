@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import Meta from '@/components/Meta/Meta';
 
 import DiscoverMovies from './components/DiscoverMovies';
 import GenresSection from './components/GenresSection';
-import { useState } from 'react';
 
 const DiscoverPage = () => {
   const [selectedGenreId, setSelectedGenreId] = useState<undefined | number>(

@@ -7,8 +7,7 @@ import {
   Skeleton,
   Stack,
   Text,
-} from '@chakra-ui/react';
-import { Icon } from '@chakra-ui/react';
+ Icon } from '@chakra-ui/react';
 import { MdFavorite } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 

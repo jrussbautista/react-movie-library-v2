@@ -2,10 +2,9 @@ import { useRef } from 'react';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button, Flex, Heading } from '@chakra-ui/react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useGenres } from '@/services/genresService';
 import 'swiper/css';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { Genre } from '@/types';
 
 SwiperCore.use([Navigation]);
 
@@ -55,9 +54,11 @@ const GenresSection = ({ onSelect, selectedGenreId }: GenresSectionProps) => {
           onSwiper={(swiper) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
+            // eslint-disable-next-line no-param-reassign
             swiper.params.navigation.prevEl = navigationPrevRef.current;
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
+            // eslint-disable-next-line no-param-reassign
             swiper.params.navigation.nextEl = navigationNextRef.current;
 
             swiper.navigation.destroy();

@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { Button, Flex } from '@chakra-ui/react';
 import { useInfiniteSearchMovies } from '@/services/moviesService';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import MovieList from '@/components/MovieList/MovieList';
@@ -7,7 +8,6 @@ import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
 import EmptyList from '@/components/EmptyList/EmptyList';
 import { searchParamsKeys } from '@/constants';
 import Meta from '@/components/Meta/Meta';
-import { Button, Flex } from '@chakra-ui/react';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();

@@ -1,8 +1,8 @@
+import { Heading, Stack } from '@chakra-ui/react';
 import { useRecommendedMovies } from '@/services/moviesService';
 import MovieList from '@/components/MovieList/MovieList';
 import ErrorBanner from '@/components/ErrorBanner/ErrorBanner';
 import MovieListSkeleton from '@/components/MovieList/MovieListSkeleton';
-import { Heading, Stack } from '@chakra-ui/react';
 
 type RecommendedMoviesProps = {
   movieId: string;
