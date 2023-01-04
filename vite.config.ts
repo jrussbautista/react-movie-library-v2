@@ -12,7 +12,7 @@ export default defineConfig({
     deps: {
       fallbackCJS: true,
     },
-    setupFiles: './test/setupTests.ts',
+    setupFiles: './src/test/setupTests.ts',
   },
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
